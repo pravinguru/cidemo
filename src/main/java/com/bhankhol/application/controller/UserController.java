@@ -117,17 +117,17 @@ public class UserController {
 
     //------------------- Delete a User --------------------------------------------------------
 
-    @RequestMapping(value = "/user/{userid}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{username}", method = RequestMethod.DELETE)
     @ApiOperation(value = "Delete a User",response = User.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully deleted User"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-    })    public ResponseEntity<User> deleteUser(@PathVariable("userid") String userid) {
-        System.out.println("Fetching & Deleting User with username " + userid);
+    })    public ResponseEntity<User> deleteUser(@PathVariable("username") String username) {
+        System.out.println("Fetching & Deleting User with username " + username);
 
-        User user = userService.getUserByUserName(userid);
+        User user = userService.getUserByUserName(username);
         if (user == null) {
-            System.out.println("Unable to delete. User with username " + userid + " not found");
+            System.out.println("Unable to delete. User with username " + username + " not found");
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
 
